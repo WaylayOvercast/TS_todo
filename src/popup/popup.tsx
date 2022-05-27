@@ -156,7 +156,7 @@ export const Popup: FC<IProps> = () => {
 
     return (
         <div className='App'>
-            <div className= {toggle.headerIsOpen ? 'header-open' : 'header'}>
+            <div className= {toggle.headerIsOpen ? 'header h-open' : 'header'}>
                 <section className='input-container' >
                     <input type='text'
                         name='titleInput'
@@ -190,30 +190,27 @@ export const Popup: FC<IProps> = () => {
                     return (
                         <div 
                         onClick={(event) => toggleOpenTask(event)}
-                        className= {indx === toggle.id && toggle.isOpen ? 'task-open' : 'task'} 
+                        className= {indx === toggle.id && toggle.isOpen ? 'task t-open' : 'task'} 
                         id={String(indx)}>
                             <h3 className='t-title'>
                                 Task:
                                 {` ${item.title}`}
                             </h3>
                             <div className='t-time-table'>
-                                <h4 className='t-time'>
-                                    deadline:&nbsp;
-                                </h4>
                                 {exp === 'expired' ?
                                         <>
-                                            <h1 className='exp'>{exp}</h1>
+                                            <h1 className='t-time exp'>deadline:&nbsp; {exp}</h1>
                                         </> 
                                     :   
                                         <> 
-                                            <h1 className='t-deadline'>{exp}</h1>
+                                            <h1 className='t-time'> deadline:&nbsp; {exp}</h1>
                                         </> 
                                 }
                                 <button className='remove-tsk'>
                                     Delete
                                 </button>
                             </div>
-                            <p className= {indx === toggle.id && toggle.isOpen ? 't-desc-open' : 't-desc'}>
+                            <p className= {indx === toggle.id && toggle.isOpen ? 't-desc d-open' : 't-desc'}>
                                 Description: 
                                 {` ${item.description}`}
                             </p>
