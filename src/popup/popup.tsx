@@ -12,31 +12,38 @@ type task = {
     deadline: number,
     expires: number
 }
+
 interface taskState {
     tasks: task[]
 }
+
 interface taskInputs {
     titleInput: string
     descInput: string
     deadlineInput: number
 }
+
 interface toggle {
     id: number | null
     isOpen: boolean
+    headerIsOpen: boolean
 }
 
 export const Popup: FC<IProps> = () => {
     const [taskState, setTaskState] = React.useState <taskState>({
         tasks: [],
     })
+
     const [inputs, setInputs] = React.useState <taskInputs>({ 
         titleInput: '',
         descInput: '',
         deadlineInput: 0,
     })
+
     const [toggle, setToggle] = React.useState <toggle>({
         id: null,
         isOpen: false,
+        headerIsOpen: false,
     })
 
     React.useEffect(() => {
@@ -135,13 +142,21 @@ export const Popup: FC<IProps> = () => {
         if (~~task.id === toggle.id) {
             setToggle({ ...toggle, isOpen: !toggle.isOpen })
         } else {
-            setToggle({ id: ~~task.id, isOpen: true })
+            setToggle({ ...toggle, id: ~~task.id, isOpen: true })
         }
+    }
+
+    function toggleOpenHeader(event: React.MouseEvent): void {
+        event.preventDefault();
+        const button: Element = event.currentTarget
+        button.id === 'header-toggle' &&
+        
+        setToggle({...toggle, headerIsOpen: !toggle.headerIsOpen})
     }
 
     return (
         <div className='App'>
-            <div className='header'>
+            <div className= {toggle.headerIsOpen ? 'header-open' : 'header'}>
                 <section className='input-container' >
                     <input type='text'
                         name='titleInput'
@@ -164,6 +179,11 @@ export const Popup: FC<IProps> = () => {
                 </section>
                 <button onClick={submitTask}>Create task</button>
             </div>
+            <button id='header-toggle'
+                    onClick={(e) => toggleOpenHeader(e)}
+                >	 	 	
+                {toggle.headerIsOpen ? '⮙' : '⮛'}
+            </button>
             <div className='todo'>
             {   taskState.tasks.length > 0 && taskState.tasks.map( (item, indx) => {
                     const exp = getTimeLeft(item.expires);
@@ -178,23 +198,20 @@ export const Popup: FC<IProps> = () => {
                             </h3>
                             <div className='t-time-table'>
                                 <h4 className='t-time'>
-                                    deadline:
-                                    {exp === 'expired' ?
+                                    deadline:&nbsp;
+                                </h4>
+                                {exp === 'expired' ?
                                         <>
                                             <h1 className='exp'>{exp}</h1>
-                                            <button className='remove-exp'>
-                                                Remove
-                                            </button>
                                         </> 
                                     :   
                                         <> 
                                             <h1 className='t-deadline'>{exp}</h1>
-                                            <button className='remove-tsk'>
-                                                Remove
-                                            </button>
                                         </> 
-                                    }
-                                </h4>
+                                }
+                                <button className='remove-tsk'>
+                                    Delete
+                                </button>
                             </div>
                             <p className= {indx === toggle.id && toggle.isOpen ? 't-desc-open' : 't-desc'}>
                                 Description: 

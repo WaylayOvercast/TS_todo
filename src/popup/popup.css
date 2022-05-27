@@ -21,6 +21,30 @@ html, body {
     justify-content: space-between;
 }
 
+.header {
+    display: none;
+}
+
+.header-open {
+    background-color: red;
+}
+
+#header-toggle {
+    border: none;
+    align-self: center;
+    background-color: rgb(213 213 213);
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    width: 25%;
+    transition: all 250ms ease-in-out;
+}
+
+#header-toggle:hover {
+    background-color: rgb(144 251 160);
+}
+
 .App .todo {
     width: 100%;
     height: 100%;
@@ -33,7 +57,7 @@ html, body {
 .App .todo .task {
     margin-top: 2%;
     margin-bottom: 2%;
-    background-color: rgb(56, 56, 56);
+    background-color: rgb(219 219 219);
     width: 80%;
     height: 30%;
     border-radius: 1.5rem;
@@ -44,14 +68,14 @@ html, body {
     text-align: center;
     padding: 3%;
     border: 2px solid rgb(32, 32, 32);
-    color: rgb(236, 236, 236);
+    color: rgb(0 0 0);
     font-size: 1rem;
 }
 
 .App .todo .task-open {
     margin-top: 2%;
     margin-bottom: 2%;
-    background-color: rgb(56, 56, 56);
+    background-color: rgb(219 219 219);
     width: 80%;
     min-height: max-content;
     border-radius: 1.5rem;
@@ -62,17 +86,18 @@ html, body {
     text-align: center;
     padding: 3%;
     border: 2px solid rgb(32, 32, 32);
-    color: rgb(236, 236, 236);
+    color: rgb(0 0 0);
     font-size: 1rem;
 }
 
 .App .todo .t-title {
-    background-color: rgb(83, 83, 83);
-    border: 2px solid rgb(32, 32, 32);
+    background-color: rgb(144 251 160);
+    border: 2px solid rgb(168, 168, 168);
     border-radius: 1.5rem;
+    max-width: 100%;
     width: fit-content;
     padding: 0 5% 0 5%;
-    margin: 0% 0% 2% 0%;
+    margin: 4% 0% 2% 0%;
 }
 
 .App .todo .t-desc {
@@ -84,6 +109,7 @@ html, body {
     text-overflow: ellipsis;
     max-width: 70%;
     background-color: rgba(43, 43, 43, 0.87);
+    color: #f4f4f4;
     border-radius: 1rem;
     padding: 2%;
     margin: 2% 0% 0% 0%;
@@ -91,7 +117,9 @@ html, body {
 
 .App .todo .t-desc-open {
     max-width: 70%;
+    animation: expand 2s;
     background-color: rgba(43, 43, 43, 0.87);
+    color: #f4f4f4;
     border-radius: 1rem;
     padding: 2%;
     margin: 2% 0% 0% 0%;
@@ -100,7 +128,8 @@ html, body {
 .App .todo .t-time-table {
     display: flex;
     justify-content: center;
-    box-shadow: 0rem 0rem 1rem rgb(5, 5, 5, 0.342) inset;
+    flex-direction: column;
+    box-shadow: 0rem 0rem 1rem 5px rgb(5 5 5 / 34%) inset;
     padding: 2% 0% 2% 0%;
     width: 70%;
     border-radius: 1rem;
@@ -108,7 +137,6 @@ html, body {
 
 .App .todo .task-open .t-time-table { 
     display: flex;
-    justify-content: center;
     box-shadow: 0rem 0rem 1rem rgba(5, 5, 5, 0.342) inset;
     padding: 2% 0% 2% 0%;
     width: 72%;
@@ -120,12 +148,33 @@ html, body {
     font-size: 1rem;
 }
 
-.App .todo .t-time-table .t-time .exp {
+.App .todo .t-time-table .exp {
     margin: 0;
     font-size: 1rem;
 }
 
-.App .todo .t-time-table .t-time .t-deadline {
+.App .todo .t-time-table .t-deadline {
     margin: 0;
     font-size: 1rem;
 } 
+
+.App .todo .t-time-table .remove-tsk {
+    align-self: center;
+    border: none;
+    width: 20%;
+    background-color: rgb(212 212 212);
+    color: #272727;
+    box-shadow: 0 0 0.1rem 0.1rem rgb(0 0 0 / 31%) inset;
+    margin-top: 0.8rem;
+    padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+    border-radius: 1rem;
+    transition: all ease-in-out 250ms;
+}
+
+.App .todo .t-time-table .remove-tsk:hover {
+    width: 22%;
+    border: none;
+    background-color: rgb(212, 41, 41);
+    box-shadow: 0 0 1rem .5rem rgba(97, 22, 22, 0.308);
+    color: rgb(231, 231, 231);
+}
