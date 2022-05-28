@@ -107,6 +107,7 @@ export const Popup: FC<IProps> = () => {
                 ]
             })
         }
+        setToggle({...toggle, headerIsOpen: false})
     }
 
     function getTimeLeft(exp: number): string {
@@ -163,19 +164,24 @@ export const Popup: FC<IProps> = () => {
                         value={inputs.titleInput}
                         onChange={(e) => handleInput(e)}
                         placeholder='Task...' />
-                    <input type='text'
+                    <textarea
                         name='descInput'
+                        rows={3}
                         value={inputs.descInput}
                         maxLength={150}
                         onChange={(e) => handleInput(e)}
                         placeholder='Desc...' />
-                    <input type='number'
-                        name='deadlineInput'
-                        value={inputs.deadlineInput}
-                        onChange={(e) => handleInput(e)}
-                        max={60}
-                        defaultValue={1}
-                        placeholder='days until deadline...' />
+                    <label>
+                        Days: &nbsp;
+                        <input type='number'
+                            className='deadlineInput'
+                            name='deadlineInput'
+                            value={inputs.deadlineInput}
+                            onChange={(e) => handleInput(e)}
+                            max={60}
+                            defaultValue={1}
+                            placeholder='days until deadline...' />
+                    </label>
                 </section>
                 <button onClick={submitTask}>Create task</button>
             </div>
