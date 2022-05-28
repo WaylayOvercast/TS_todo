@@ -183,7 +183,10 @@ export const Popup: FC<IProps> = () => {
                             placeholder='days until deadline...' />
                     </label>
                 </section>
-                <button onClick={submitTask}>Create task</button>
+                <button className='submit-task'
+                    onClick={submitTask}>
+                        Create task
+                </button>
             </div>
             <button id='header-toggle'
                     onClick={(e) => toggleOpenHeader(e)}
